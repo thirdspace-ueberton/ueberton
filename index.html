@@ -450,6 +450,39 @@
       .card-grid { grid-template-columns: 1fr; }
       .card { border-right: none; border-bottom: 1px solid var(--border); }
     }
+
+    /* ── WORKSHOP-INFO (aufklappbar) ── */
+    .workshop {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 2px solid var(--accent);
+      background: var(--surface);
+    }
+    .workshop h2 { margin-bottom: 1rem; }
+    .workshop p + p { margin-top: 1rem; }
+    .workshop-toggle {
+      margin-top: 1.25rem;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: var(--accent);
+      color: #fff;
+      border: 2px solid var(--accent);
+      padding: 0.6rem 1.2rem;
+      cursor: pointer;
+    }
+    .workshop-toggle:hover { background: #fff; color: var(--accent); }
+    .workshop-more { margin-top: 1.5rem; }
+    .workshop-more[hidden] { display: none; }
+    .workshop-more h3 {
+      font-family: 'Special Elite', 'Courier New', monospace;
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+    .workshop-more h3:first-child { margin-top: 0; }
+    .workshop-more ul { list-style: none; }
+    .workshop-more li { margin-bottom: 0.5rem; }
   </style>
 </head>
 <body>
@@ -480,6 +513,41 @@
   <div class="eyebrow">willkommen im ueber:ton</div>
   <div class="divider"></div>
   <p>ueber:ton ist ein Atelier, eine Galerie und mehr. Auf dieser Seite erfahren Sie mehr über uns, das Atelier und unsere bisherigen Veranstaltungen. Weiter unten können Sie sich zudem für unseren Newsletter eintragen. </p>
+
+  <div class="workshop">
+    <p>Wir laden ein zu einem Fotowalk durch die Nürnberger Gartenstadt.</p>
+    <p>Unter dem Titel „Flanieren und Fokussieren“ rückt der Fotowalk Skulpturen, Denkmäler und Reliefs im öffentlichen Raum in den Blick. Sie dienen als visuelle Ankerpunkte urbaner Erinnerung und bekommen im Alltag oft wenig Aufmerksamkeit. Die Teilnehmenden gehen gemeinsam eine Route von Objekt zu Objekt und fotografieren mit verschiedenen Digitalkameras. Im Mittelpunkt stehen die bewusste Wahrnehmung des Stadtraums und das Experimentieren mit unterschiedlichen Kameras.</p>
+    <p>Für die ersten zehn Anmeldungen gibt es eine mini Schlüsselanhänger-Digitalkamera geschenkt als kleines Extra zum Experimentieren beim Workshop.</p>
+
+    <button type="button" class="workshop-toggle" id="workshopToggle" aria-expanded="false" aria-controls="workshopMore">Mehr Infos &amp; Anmeldung ▾</button>
+
+    <div class="workshop-more" id="workshopMore" hidden>
+      <h3>Anmeldung</h3>
+      <p>Da die Teilnehmendenzahl begrenzt ist, bitten wir um Anmeldung per E-Mail an <a href="mailto:space@ueber-ton.de">space@ueber-ton.de</a>.</p>
+
+      <h3>Die wichtigsten Informationen im Überblick</h3>
+      <ul>
+        <li><strong>Termin:</strong> Samstag, 24. Oktober 2026, 14:00 bis ca. 16:00 Uhr</li>
+        <li><strong>Ausweichtermin bei schlechtem Wetter:</strong> Samstag, 31. Oktober 2026</li>
+        <li><strong>Treffpunkt:</strong> Vor dem Atelier ueber:ton, Sebald-Heyden-Straße 19, 90469 Nürnberg</li>
+        <li><strong>Teilnehmendenzahl:</strong> mindestens 5, höchstens 15 Personen</li>
+        <li><strong>Material:</strong> Digitalkameras werden gestellt. Eigene Kameras können selbstverständlich mitgebracht werden.</li>
+      </ul>
+      <p style="margin-top:1rem;">Der Workshopleiter ist Künstler und Mitglied des Ateliers ueber:ton: Johannes Lenzgeiger.</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const btn = document.getElementById('workshopToggle');
+      const more = document.getElementById('workshopMore');
+      btn.addEventListener('click', function () {
+        const open = more.hidden;
+        more.hidden = !open;
+        btn.setAttribute('aria-expanded', open);
+        btn.innerHTML = open ? 'Weniger anzeigen ▴' : 'Mehr Infos &amp; Anmeldung ▾';
+      });
+    })();
+  </script>
 </section>
 
 <!-- Mitglieder -->
