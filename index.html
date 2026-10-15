@@ -475,14 +475,18 @@
     .workshop-more { margin-top: 1.5rem; }
     .workshop-more[hidden] { display: none; }
     .workshop-more h3 {
-      font-family: 'Special Elite', 'Courier New', monospace;
-      font-weight: 400;
-      font-size: 1.1rem;
-      margin: 1.5rem 0 0.5rem;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 1.5rem 0 0.25rem;
     }
     .workshop-more h3:first-child { margin-top: 0; }
     .workshop-more ul { list-style: none; }
     .workshop-more li { margin-bottom: 0.5rem; }
+    .workshop-heading { font-weight: 700; margin-top: 2rem; }
+    .workshop-heading + .workshop { margin-top: 0.75rem; }
+    .workshop + .workshop { margin-top: 1.5rem; }
   </style>
 </head>
 <body>
@@ -514,14 +518,16 @@
   <div class="divider"></div>
   <p>ueber:ton ist ein Atelier, eine Galerie und mehr. Auf dieser Seite erfahren Sie mehr über uns, das Atelier und unsere bisherigen Veranstaltungen. Weiter unten können Sie sich zudem für unseren Newsletter eintragen. </p>
 
+  <p class="workshop-heading">geplante Veranstaltungen:</p>
+
   <div class="workshop">
     <p>Wir laden ein zu einem Fotowalk durch die Nürnberger Gartenstadt.</p>
     <p>Unter dem Titel „Flanieren und Fokussieren“ rückt der Fotowalk Skulpturen, Denkmäler und Reliefs im öffentlichen Raum in den Blick. Sie dienen als visuelle Ankerpunkte urbaner Erinnerung und bekommen im Alltag oft wenig Aufmerksamkeit. Die Teilnehmenden gehen gemeinsam eine Route von Objekt zu Objekt und fotografieren mit verschiedenen Digitalkameras. Im Mittelpunkt stehen die bewusste Wahrnehmung des Stadtraums und das Experimentieren mit unterschiedlichen Kameras.</p>
     <p>Für die ersten zehn Anmeldungen gibt es eine mini Schlüsselanhänger-Digitalkamera geschenkt als kleines Extra zum Experimentieren beim Workshop.</p>
 
-    <button type="button" class="workshop-toggle" id="workshopToggle" aria-expanded="false" aria-controls="workshopMore">Mehr Infos &amp; Anmeldung ▾</button>
+    <button type="button" class="workshop-toggle" aria-expanded="false" aria-controls="workshopMore1">Mehr Infos &amp; Anmeldung ▾</button>
 
-    <div class="workshop-more" id="workshopMore" hidden>
+    <div class="workshop-more" id="workshopMore1" hidden>
       <h3>Anmeldung</h3>
       <p>Da die Teilnehmendenzahl begrenzt ist, bitten wir um Anmeldung per E-Mail an <a href="mailto:space@ueber-ton.de">space@ueber-ton.de</a>.</p>
 
@@ -536,17 +542,37 @@
       <p style="margin-top:1rem;">Der Workshopleiter ist Künstler und Mitglied des Ateliers ueber:ton: Johannes Lenzgeiger.</p>
     </div>
   </div>
+
+  <div class="workshop">
+    <p>Workshop mit Verpackungschips</p>
+    <p>Durch den Workshop soll künstlerisches Handeln (dreidimensionales Gestalten) als Darstellungs- und Ausdrucksmöglichkeit erlebbar werden. Das üblicherweise zur Auspolsterung von Wert-/ Kunstgegenständen verwendete Alltagsmaterial wird hier selbst zur Kunst. Die TeilnehmerInnen können mit dem Material experimentieren, dessen Beschaffenheit begreifen und so ihre ganz eigenen Kunstwerke damit erstellen. Die Verpackungschips lassen sich mit Wasser bearbeiten/ kleben/ auflösen. Nach Belieben können mit Sprühkreide farbige Akzente gesetzt werden.</p>
+
+    <button type="button" class="workshop-toggle" aria-expanded="false" aria-controls="workshopMore1">Mehr Infos &amp; Anmeldung ▾</button>
+
+    <div class="workshop-more" id="workshopMore1" hidden>
+      <h3>Anmeldung</h3>
+      <p>Da die Teilnehmendenzahl begrenzt ist, bitten wir um Anmeldung per E-Mail an <a href="mailto:space@ueber-ton.de">space@ueber-ton.de</a>.</p>
+
+      <h3>Die wichtigsten Informationen im Überblick</h3>
+      <ul>
+        <li><strong>Termin:</strong> Samstag, 21. November 2026, 14:00 bis ca. 18:00 Uhr</li>
+        <li><strong>Treffpunkt:</strong> Vor dem Atelier ueber:ton, Sebald-Heyden-Straße 19, 90469 Nürnberg</li>
+        <li><strong>Teilnehmendenzahl:</strong> Maximale Teilnehmerzahl 15 Personen</li>
+        <li><strong>Material:</strong> biologisches Verpackungsmaterial (aus Mais- und Kartoffelstärke), evtl. Sprühkreide wird bereitgestellt</li>
+      </ul>
+      <p style="margin-top:1rem;">Workshopleiterin ist die Künstlerin und Mitglied des Ateliers Julia E. Wagner.</p>
+    </div>
+  </div>
   <script>
-    (function () {
-      const btn = document.getElementById('workshopToggle');
-      const more = document.getElementById('workshopMore');
+    document.querySelectorAll('.workshop-toggle').forEach(function (btn) {
+      const more = document.getElementById(btn.getAttribute('aria-controls'));
       btn.addEventListener('click', function () {
         const open = more.hidden;
         more.hidden = !open;
         btn.setAttribute('aria-expanded', open);
         btn.innerHTML = open ? 'Weniger anzeigen ▴' : 'Mehr Infos &amp; Anmeldung ▾';
       });
-    })();
+    });
   </script>
 </section>
 
