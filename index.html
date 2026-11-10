@@ -539,18 +539,6 @@
       <p style="margin-top:1rem;">Workshopleiterin ist die Künstlerin und Mitglied des Ateliers Julia E. Wagner.</p>
     </div>
   </div>
-  <script>
-    document.querySelectorAll('.workshop-toggle').forEach(function (btn) {
-      const more = document.getElementById(btn.getAttribute('aria-controls'));
-      btn.addEventListener('click', function () {
-        const open = more.hidden;
-        more.hidden = !open;
-        btn.setAttribute('aria-expanded', open);
-        btn.innerHTML = open ? 'Weniger anzeigen ▴' : 'Mehr Infos &amp; Anmeldung ▾';
-      });
-    });
-  </script>
-</section>
 
   <div class="workshop">
     <p>Workshop mit Verpackungschips</p>
