@@ -497,6 +497,8 @@
 </head>
 <body>
 
+<audio id="scrollSound" src="freesound_community-type-writing-6834_1_.mp3" preload="auto" loop></audio>
+
 <div class="progress-bar" id="progress"></div>
 
 <nav>
@@ -806,6 +808,41 @@
     gallery.querySelector('.gallery-next').addEventListener('click', () => goTo(current + 1));
     gallery.querySelector('.gallery-prev').addEventListener('click', () => goTo(current - 1));
   });
+
+
+  // ── SCROLL-SOUND ──
+  // Spielt den Ton, solange gescrollt wird, und stoppt kurz nach dem letzten Scroll-Impuls.
+  const scrollSound = document.getElementById('scrollSound');
+  const SOUND_STOP_DELAY = 150; // ms ohne Scrollen, danach wird der Ton angehalten
+  let soundTimer = null;
+  let soundUnlocked = false;
+
+  // Browser erlauben Ton erst nach einer Nutzer-Interaktion (Klick, Tippen, Taste).
+  // Beim ersten Mal wird der Ton daher "freigeschaltet".
+  function unlockSound() {
+    if (soundUnlocked) return;
+    soundUnlocked = true;
+    scrollSound.volume = 0;
+    scrollSound.play().then(() => {
+      scrollSound.pause();
+      scrollSound.currentTime = 0;
+      scrollSound.volume = 1;
+    }).catch(() => {
+      scrollSound.volume = 1;
+      soundUnlocked = false;
+    });
+  }
+  ['pointerdown', 'touchstart', 'keydown'].forEach(evt =>
+    window.addEventListener(evt, unlockSound, { once: false, passive: true })
+  );
+
+  window.addEventListener('scroll', () => {
+    if (scrollSound.paused) {
+      scrollSound.play().catch(() => { /* noch keine Interaktion: kein Ton */ });
+    }
+    clearTimeout(soundTimer);
+    soundTimer = setTimeout(() => scrollSound.pause(), SOUND_STOP_DELAY);
+  }, { passive: true });
 
   const bar = document.getElementById('progress');
   window.addEventListener('scroll', () => {
